@@ -33,7 +33,7 @@ CREATE TABLE `Jahrgang1993_2009` (
   `course` varchar(5) COLLATE latin1_german1_ci DEFAULT '',
   `lastname` varchar(40) COLLATE latin1_german1_ci NOT NULL,
   `firstname` varchar(40) COLLATE latin1_german1_ci NOT NULL,
-  `adress` varchar(50) COLLATE latin1_german1_ci DEFAULT '',
+  `address` varchar(50) COLLATE latin1_german1_ci DEFAULT '',
   `city` varchar(50) COLLATE latin1_german1_ci DEFAULT '',
   `mail` varchar(50) COLLATE latin1_german1_ci DEFAULT '',
   `company` varchar(100) COLLATE latin1_german1_ci DEFAULT ''
