@@ -32,7 +32,7 @@ CREATE TABLE `Nutzer` (
   `nid` int(11) NOT NULL,
   `firstname` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `lastname` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `course` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `course` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `school` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `gradyear` year(4) DEFAULT NULL,
   `mail` varchar(254) COLLATE latin1_german1_ci NOT NULL,
