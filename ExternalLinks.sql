@@ -34,7 +34,6 @@ CREATE TABLE `ExternalLinks` (
   `instargram` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '',
   `xing` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '',
   `linkedIn` varchar(20) COLLATE latin1_german1_ci DEFAULT '',
-  `phone` varchar(15) COLLATE latin1_german1_ci DEFAULT '',
   `others` varchar(60) COLLATE latin1_german1_ci DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
 
