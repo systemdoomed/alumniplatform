@@ -36,7 +36,7 @@ CREATE TABLE `Nutzer` (
   `school` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `gradyear` year(4) DEFAULT NULL,
   `mail` varchar(254) COLLATE latin1_german1_ci NOT NULL,
-  `state` tinyint(4) NOT NULL,
+  `state` tinyint(4)  NULL DEFAULT '0',
   `isSendMail` tinyint(1) DEFAULT NULL,
   `matrikel` varchar(8) COLLATE latin1_german1_ci DEFAULT NULL,
   `address` varchar(30) COLLATE latin1_german1_ci DEFAULT NULL,
