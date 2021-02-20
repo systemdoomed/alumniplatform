@@ -192,6 +192,36 @@ function emptyInputLogin($mail,$pwd){
 	return $result;
 }
 
+
+
+function checkHash($conn,$nid){
+	
+	$sql = "SELECT PWD FROM Anmeldung where NID = ?;";
+
+	$stmt = mysqli_stmt_init($conn);
+
+	if (!mysqli_stmt_prepare($stmt,$sql)) {
+		header("location: ../login.php?error=pwdnotfound");
+		exit();
+	}
+
+	mysqli_stmt_bind_param($stmt,"i",$nid);
+	mysqli_stmt_execute($stmt);
+
+	$resultData = mysqli_stmt_get_result($stmt);
+
+	if ($row = mysqli_fetch_assoc($resultData)) {
+			return $row;
+	}
+	else{
+		$result = false;
+		return $result;
+	}
+	mysqli_stmt_close($stmt);
+
+}
+
+
 function getNidFromMail($conn,$mail){
 	
 	$sql = "SELECT NID FROM Nutzer where mail = ?;";
@@ -199,7 +229,7 @@ function getNidFromMail($conn,$mail){
 	$stmt = mysqli_stmt_init($conn);
 
 	if (!mysqli_stmt_prepare($stmt,$sql)) {
-		header("location: ../signup.php?error=userexists");
+		header("location: ../login.php?error=mailnotfound");
 		exit();
 	}
 
@@ -218,44 +248,58 @@ function getNidFromMail($conn,$mail){
 	mysqli_stmt_close($stmt);
 
 }
-
-
-
-function loginCheck($conn,$mail){
-	
-	$sql = "SELECT * FROM Nutzer where mail = ?;";
-
-	$stmt = mysqli_stmt_init($conn);
-
-	mysqli_stmt_bind_param($stmt,"s",$mail);
-	mysqli_stmt_execute($stmt);
-
-	$resultData = mysqli_stmt_get_result($stmt);
-
-	if ($row = mysqli_fetch_assoc($resultData)) {
-			return $row;
-	}
-	else{
-		$result = false;
-		return $result;
-	}
-	mysqli_stmt_close($stmt);
-
-}
-
 
 function loginUser($conn,$mail,$pwd){
 	
-	$logincheck = loginCheck($conn,$mail); 
+	$nid = getNidFromMail($conn,$mail);
 
-	if ($logincheck === false) {
-		header("location: ../login.php?error=nomail");
-		exit();
+	if ($nid === false) {
+			header("location: ../login.php?error=mailnotfound");
+			exit();
+	}
+	else {
+		$pwdHashed = checkHash($conn,$nid["NID"]);
+		$checkPwd = password_verify($pwd, $pwdHashed["PWD"]);
+
+		if ($checkPwd === false) {
+			header("location: ../login.php?error=wronglogin");
+			exit();
+		}
+		else if ($checkPwd === true) {
+			session_start();
+			$_SESSION["nid"] = $nid;
+			header("location: ../index.php");
+			exit();
+		}
 	}
 
-	$pwdHashed = checkHash($conn,$mail);
 
+	
 }
+
+
+/*
+function loginCheck($conn,$mail){
+	
+	$sql = "SELECT * FROM Nutzer where mail = 'tony_mahn@outlook.de';";
+	$newmail = "tony_mahn@outlook.de";
+	$stmt = mysqli_stmt_init($conn);
+
+	//mysqli_stmt_bind_param($stmt,"s",$newmail);
+	mysqli_stmt_execute($stmt);
+
+	$resultData = mysqli_stmt_get_result($stmt);
+
+	if ($row = mysqli_fetch_assoc($resultData)) {
+			return $row;
+	}
+	else{
+		$result = false;
+		return $result;
+	}
+	mysqli_stmt_close($stmt);
+
+}*/
 
 
 

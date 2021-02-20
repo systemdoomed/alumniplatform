@@ -1,3 +1,10 @@
+
+<?php
+
+	session_start();
+
+?>
+
 <html lang="de" dir="ltr">
 	<head>
 		<meta charset="utf-8">
@@ -12,8 +19,24 @@
 				<ul class="navbar-nav">
 					
 					<li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
-					<li class="nav-item"><a class="nav-link" href="signup.php">Registrieren</a></li>
+					
+					<?php
+
+						if (isset($_SESSION["nid"])) {
+							echo "<li class='nav-item'><a class='nav-link' href='profile.php'>Mein Profil</a></li>";
+							echo "<li class='nav-item'><a class='nav-link' href='contacts.php'>Kontakte</a></li>";
+							echo "<li class='nav-item'><a class='nav-link' href='gallery.php'>Gallerie</a></li>";
+							echo "<li class='nav-item'><a class='nav-link' href='include/logout.inc.php'>Logout</a></li>";
+						}
+						
+						else {
+
+							echo "<li class='nav-item'><a class='nav-link' href='login.php'>Login</a></li>";
+							echo "<li class='nav-item'><a class='nav-link' href='signup.php'>Registrieren</a></li>";
+						}
+
+					?>
+
 				</ul>
 
 		</nav>

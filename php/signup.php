@@ -29,7 +29,7 @@ include_once 'header.php';
 		}
 	}
 
-	?>t
+	?>
 	<h2 class="text-light">Registrieren</h2>
 	
 	<form action="include/signup.inc.php" method="post">

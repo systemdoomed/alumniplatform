@@ -1,5 +1,5 @@
 <?php
-include_once 'header_alt.php'
+include_once 'header.php'
 ?>
 
 

@@ -1,8 +1,8 @@
 <?php
 
 if (isset($_POST["submit"])) {
-	$mail = $_POST["inputmail"];
-	$pwd = $_POST["inputpwd"];
+	$mail = $_POST["loginmail"];
+	$pwd = $_POST["loginpwd"];
 
 	require_once 'dbh.inc.php';
 	require_once 'functions.inc.php';
@@ -15,6 +15,6 @@ if (isset($_POST["submit"])) {
 	loginUser($conn,$mail,$pwd);
 }
 else {
-	header("location: ../login.php");
+	header("location: ../login.php?error=random");
 	exit();
 }

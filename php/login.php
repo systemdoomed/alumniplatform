@@ -2,24 +2,43 @@
 include_once 'header.php'
 ?>
 <div class=" jumbotron jumbotron-image seamless gradient-1">
+	<?php
+
+	if (isset($_GET["error"])) {
+		if ($_GET["error"] == "emptyinput") {
+			echo '<p class=" text-center text-light">Sie haben eines der benötigten Felder nicht ausgefüllt!</p>';
+		}
+		else if ($_GET["error"] == "mailnotfound") {
+			echo '<p class=" text-center text-light">Bitte geben sie eine registrierte Mail-Adresse ein! Sollten sie noch keine besitzen, können sie sich mit unserem Formular registrieren.</p>';
+		}
+		else if ($_GET["error"] == "wronglogin") {
+			echo '<p class=" text-center text-light">Passwort oder Mail-Adresse sind nicht korrekt.</p>';
+		}
+
+		else if ($_GET["error"] == "none") {
+			echo '<p class=" text-center text-light">Sie haben sich erfolgreich angemeldet!</p>';
+		}
+	}
+
+	?>
 	<h2 class="text-light">Anmeldung</h2>
-	<form action="include/signup.inc.php" method="post">
+	<form action="include/login.inc.php" method="post">
 			<div class="form-row">
 				<div class="form-group col-md-3">
 			      <label for="inputmail" class="text-light">Mail-Adresse</label>
-			      <input type="email" name="inputmail" class="form-control" id="inputmail" placeholder="Mail-Adresse">
+			      <input type="email" name="loginmail" class="form-control" id="inputmail" placeholder="Mail-Adresse">
 			    </div>
 			</div>
 			<div class="form-row">
 			    
 			    <div class="form-group col-md-3">
 			      <label for="inputpwd"class="text-light">Passwort</label>
-			      <input type="password" name="inputpwd" class="form-control" id="inputpwd" placeholder="Passwort">
+			      <input type="password" name="loginpwd" class="form-control" id="inputpwd" placeholder="Passwort">
 			    </div>
 			 </div>
 			  
 			
-			  <button type="submit" class="btn btn-primary">Einloggen</button>
+			  <button type="submit" name= "submit" class="btn btn-primary">Einloggen</button>
 	</form>
 </div>		
 
