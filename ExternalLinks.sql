@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `ExternalLinks` (
   `nid` int(11) NOT NULL,
   `twitter` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '',
-  `instargram` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '',
+  `instagram` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '',
   `xing` varchar(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT '',
   `linkedIn` varchar(20) COLLATE latin1_german1_ci DEFAULT '',
   `others` varchar(60) COLLATE latin1_german1_ci DEFAULT ''
