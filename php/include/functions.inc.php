@@ -141,7 +141,7 @@ function insertLinks($conn,$nid,$twitter,$insta, $xing, $linkedin){
 }
 
 
-function createUser($conn, $firstname, $lastname,$mail,$isSendMail, $pwd1, $matrikel, $course, $gradyear, $school, $phone,$gender, $address, $city, $company , $position, $title, $twitter, $insta, $facebook, $xing, $linkedin, $isSupportingMember){
+function createUser($conn, $firstname, $lastname,$mail,$isSendMail, $pwd1, $matrikel, $course, $gradyear, $school, $phone,$gender, $address, $city, $company , $position, $title, $twitter, $insta, $facebook, $xing, $linkedin, $isSupportingMember,$company2,$furtherinformation,$isSameCompany,$isDifferentCompany,$isFreelancer,$isFederal,$isFurtherEducation,$isForeignCountry,$isWorkSeeking){
 	
 	$state = 1;
 
@@ -167,7 +167,7 @@ function createUser($conn, $firstname, $lastname,$mail,$isSendMail, $pwd1, $matr
 
 	insertPwd($conn,$nid,$pwd1);
 	insertLinks($conn,$nid,$twitter,$insta,$xing,$linkedin);
-	
+	insertStatistic();
 
 	header("location: ../signup.php?error=none");
 	exit();

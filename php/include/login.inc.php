@@ -15,6 +15,6 @@ if (isset($_POST["submit"])) {
 	loginUser($conn,$mail,$pwd);
 }
 else {
-	header("location: ../login.php?error=random");
+	header("location: ../login.php");
 	exit();
 }

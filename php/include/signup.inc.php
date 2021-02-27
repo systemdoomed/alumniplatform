@@ -23,6 +23,9 @@ if (isset($_POST["submit"])) {
 	$facebook = $_POST["inputfacebook"];
 	$xing = $_POST["inputxing"];
 	$linkedin = $_POST["inputlinkedin"];
+	$company2 = $_POST["inputCompany2"];
+	$furtherinformation = $_POST["inputfurtherinformation"];
+
 	
 	if(isset($_POST["inputisSupportingMember"])){
 		$isSupportingMember = 1;
@@ -30,11 +33,61 @@ if (isset($_POST["submit"])) {
 	else{
 		$isSupportingMember = 0;
 	}
+
 	if(isset($_POST["inputisSendMail"])){
 		$isSendMail = 1;
 	}
 	else{
 		$isSendMail = 0;
+	}
+
+	if(isset($_POST["inputisSameCompany"])){
+		$isSameCompany = 1;
+	}
+	else{
+		$isSameCompany = 0;
+	}
+
+	if(isset($_POST["inputisDifferentCompany"])){
+		$isDifferentCompany = 1;
+	}
+	else{
+		$isDifferentCompany = 0;
+	}
+
+	if(isset($_POST["inputisFreelancer"])){
+		$isFreelancer = 1;
+	}
+	else{
+		$isFreelancer = 0;
+	}
+
+	if(isset($_POST["inputisFederal"])){
+		$isFederal = 1;
+	}
+	else{
+		$isFederal = 0;
+	}
+
+	if(isset($_POST["inputisFurtherEducation"])){
+		$isFurtherEducation = 1;
+	}
+	else{
+		$isFurtherEducation = 0;
+	}
+
+	if(isset($_POST["inputisForeignCountry"])){
+		$isForeignCountry = 1;
+	}
+	else{
+		$isForeignCountry = 0;
+	}
+
+	if(isset($_POST["inputisWorkSeeking"])){
+		$isWorkSeeking = 1;
+	}
+	else{
+		$isWorkSeeking = 0;
 	}
 
 	require_once 'dbh.inc.php';
@@ -68,7 +121,7 @@ if (isset($_POST["submit"])) {
 	}
 	
 
-	createUser($conn, $firstname, $lastname,$mail,$isSendMail, $pwd1, $matrikel, $course, $gradyear, $school, $phone,$gender, $address, $city, $company , $position, $title, $twitter, $insta, $facebook, $xing, $linkedin, $isSupportingMember);
+	createUser($conn, $firstname, $lastname,$mail,$isSendMail, $pwd1, $matrikel, $course, $gradyear, $school, $phone,$gender, $address, $city, $company , $position, $title, $twitter, $insta, $facebook, $xing, $linkedin, $isSupportingMember,$company2,$furtherinformation,$isSameCompany,$isDifferentCompany,$isFreelancer,$isFederal,$isFurtherEducation,$isForeignCountry,$isWorkSeeking);
 
 }
 else {
