@@ -75,7 +75,7 @@ function userExists($conn,$firstname,$lastname,$course,$gradyear,$mail){
 
 function getNid($conn,$firstname,$lastname,$course,$gradyear,$mail){
 	
-	$sql = "SELECT NID FROM Nutzer where firstname = ? AND lastname = ? AND course = ? AND gradyear = ? AND mail = ?;";
+	$sql = "SELECT nid FROM Nutzer where firstname = ? AND lastname = ? AND course = ? AND gradyear = ? AND mail = ?;";
 
 	$stmt = mysqli_stmt_init($conn);
 
@@ -103,7 +103,7 @@ function getNid($conn,$firstname,$lastname,$course,$gradyear,$mail){
 
 function insertPwd($conn,$nid,$pwd){
 
-	$sql = "INSERT INTO Anmeldung (NID,PWD) VALUES(?,?);";
+	$sql = "INSERT INTO Anmeldung (nid,password) VALUES(?,?);";
 
 	$stmt = mysqli_stmt_init($conn);
 
@@ -123,7 +123,7 @@ function insertPwd($conn,$nid,$pwd){
 
 function insertLinks($conn,$nid,$twitter,$insta, $xing, $linkedin){
 
-	$sql = "INSERT INTO ExternalLinks (NID,Twitter,Instagram,Xing,Linkedin) VALUES(?,?,?,?,?);";
+	$sql = "INSERT INTO ExternalLinks (nid,twitter,instagram,xing,linkedin) VALUES(?,?,?,?,?);";
 
 	$stmt = mysqli_stmt_init($conn);
 
@@ -196,7 +196,7 @@ function emptyInputLogin($mail,$pwd){
 
 function checkHash($conn,$nid){
 	
-	$sql = "SELECT PWD FROM Anmeldung where NID = ?;";
+	$sql = "SELECT password FROM Anmeldung where nid = ?;";
 
 	$stmt = mysqli_stmt_init($conn);
 
@@ -224,7 +224,7 @@ function checkHash($conn,$nid){
 
 function getNidFromMail($conn,$mail){
 	
-	$sql = "SELECT NID FROM Nutzer where mail = ?;";
+	$sql = "SELECT nid FROM Nutzer where mail = ?;";
 
 	$stmt = mysqli_stmt_init($conn);
 
@@ -258,8 +258,8 @@ function loginUser($conn,$mail,$pwd){
 			exit();
 	}
 	else {
-		$pwdHashed = checkHash($conn,$nid["NID"]);
-		$checkPwd = password_verify($pwd, $pwdHashed["PWD"]);
+		$pwdHashed = checkHash($conn,$nid["nid"]);
+		$checkPwd = password_verify($pwd, $pwdHashed["password"]);
 
 		if ($checkPwd === false) {
 			header("location: ../login.php?error=wronglogin");
