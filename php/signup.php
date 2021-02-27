@@ -31,47 +31,24 @@ include_once 'header.php';
 
 	?>
 	<h2 class="text-light">Registrieren</h2>
-	
+	<br>
+	<p class="text-light">Alle notwendigen Felder sind mit einem Sternchen (*) gekennzeichnet.</p>
 	<form action="include/signup.inc.php" method="post">
 		<div class="form-row">
-			    <div class="form-group col-md-3">
-			      <label for="inputfirstname" class="text-light">Vorname</label>
+			    <div class="form-group col-xl-2">
+			      <label for="inputfirstname" class="text-light">Vorname*</label>
 			      <input type="text" name="inputfirstname" class="form-control" id="inputfirstname" placeholder="Vorname">
 			    </div>
-			    <div class="form-group col-md-3">
-			      <label for="inputlastname" class="text-light">Nachname</label>
+			    <div class="form-group col-xl-2">
+			      <label for="inputlastname" class="text-light">Nachname*</label>
 			      <input type="text" name="inputlastname" class="form-control" id="inputlastname" placeholder="Nachname">
 			    </div>
-			</div>
-			<div class="form-row">
-			    <div class="form-group col-md-3">
-			      <label for="inputmail" class="text-light">Mail-Adresse</label>
+			    <div class="form-group col-xl-2">
+			      <label for="inputmail" class="text-light">Mail-Adresse*</label>
 			      <input type="email" name="inputmail" class="form-control" id="inputmail" placeholder="Mail-Adresse">
-			    </div>
-			  </div>
-			  <div class="form-row">
-			    <div class="form-group col-md-6">
-			      <label for="inputisSendMail" class="text-light">Die Berufsakademie darf mich über meine Mail-Adresse kontaktieren.</label>
-			      <input type="checkbox" id="isSendMail" name="inputisSendMail" value="valueisSendMail">			      
-			    </div>
-			</div>
-			  <div class="form-row">
-			    <div class="form-group col-md-3">
-			      <label for="inputpwd1"class="text-light">Passwort</label>
-			      <input type="password" name="inputpwd1" class="form-control" id="inputpwd1" placeholder="Passwort">
-			    </div>
-			    <div class="form-group col-md-3">
-			      <label for="inputpwd2"class="text-light">Passwort wiederholen</label>
-			      <input type="password" name="inputpwd2" class="form-control" id="inputpwd2" placeholder="Passwort">
-			    </div>
-			  </div>
-			  <div class="form-row">
-			    <div class="form-group col-md-3">
-			      <label for="inputmatrikel"class="text-light">Matrikelnummer</label>
-			      <input type="text" name="inputmatrikel" class="form-control" id="inputmatrikel" placeholder="ehemalige Matrikelnummer">
-			    </div>
-			    <div class="form-group col-md-3">
-			      <label for="inputcourse"class="text-light">Studienrichtung</label>
+			   </div>
+			   <div class="form-group col-xl-1">
+			      <label for="inputcourse"class="text-light">Studienrichtung*</label>
 			      <select id="inputcourse" name="inputcourse" class="form-control">
 			        <option selected>Auswählen...</option>
 			        <option>BW</option>
@@ -85,27 +62,8 @@ include_once 'header.php';
 			        <option>TM</option>
 			      </select>
 			    </div>
-			  </div>
-			  <div class="form-row">
-			    <div class="form-group col-md-3">
-			      <label for="inputgradyear"class="text-light">Abschlussjahr</label>
-			      <input type="text" name="inputgradyear" class="form-control" id="inputgradyear" placeholder="Abschlussjahr">
-			    </div>
-			    <div class="form-group col-md-3">
-			      <label for="inputschool"class="text-light">Hochschule</label>
-			      <select id="inputschool" name="inputschool" class="form-control">
-			        <option selected>Auswählen...</option>
-			        <option>BA Leipzig</option>
-			      </select>
-			    </div>
-			  </div>
-			  <div class="form-row">
-				  <div class="form-group col-md-3">
-				    <label for="inputphone">Telefonnummer</label>
-				    <input type="tel" name="inputphone" class="form-control" id="inputphone" placeholder="Telefonnummer">
-				  </div>
-				  <div class="form-group col-md-3">
-			      <label for="inputgender">Geschlecht</label>
+			    <div class="form-group col-xl-1">
+			      <label for="inputgender" class="text-light">Geschlecht*</label>
 			      <select id="inputgender" name="inputgender" class="form-control">
 			        <option selected>Auswählen...</option>
 			        <option>m</option>
@@ -113,75 +71,157 @@ include_once 'header.php';
 			        <option>d</option>
 			      </select>
 			    </div>
-			  </div>
-			  <div class="form-row">
-				  <div class="form-group col-md-3">
-				    <label for="inputaddress">Strasse</label>
-				    <input type="text" name="inputaddress" class="form-control" id="inputaddress" placeholder="z.B. Schönauer Straße 113a">
-				  </div>
-					<div class="form-group col-md-3">
-				    <label for="inputcity">Stadt</label>
-				    <input type="text" name="inputcity" class="form-control" id="inputcity" placeholder="z.B. Leipzig">
-			      </div>
-			  </div>
-			  <div class="form-row">
-				  <div class="form-group col-md-3">
-				    <label for="inputcompany">Aktuelle Firma</label>
-				    <input type="text" name="inputcompany" class="form-control" id="inputcompany" placeholder="Firmenname">
-				  </div>
-					<div class="form-group col-md-3">
-				    <label for="inputposition">Position</label>
-				    <input type="text" name="inputposition" class="form-control" id="inputposition" placeholder="Position">
-			      </div>
-			  </div>
-			  <div class="form-row">
-				  <div class="form-group col-md-3">
-			      <label for="inputtitle">Akademischer Titel</label>
-			      <select id="inputtitle" name="inputtitle" class="form-control">
+			    <div class="form-group col-xl-1">
+			      <label for="inputschool"class="text-light">Hochschule*</label>
+			      <select id="inputschool" name="inputschool" class="form-control">
 			        <option selected>Auswählen...</option>
-			        <option>Bachelor</option>
-			        <option>Master</option>
-			        <option>Diplom</option>
-			        <option>Doktor</option>
-			        <option>Professor</option>
+			        <option>BA Leipzig</option>
 			      </select>
 			    </div>
-			  </div>
-			  <div class="form-row">
-			    <div class="form-group col-md-2">
-			      <label for="inputtwitter">Twitter</label>
-			      <input type="text" name="inputtwitter" class="form-control" id="inputtwitter" placeholder="Twitter-Nutzername">
+			    <div class="form-group col-xl-1">
+			      <label for="inputgradyear"class="text-light">Abschlussjahr*</label>
+			      <input type="text" name="inputgradyear" class="form-control" id="inputgradyear" placeholder="Abschlussjahr">
 			    </div>
-			    <div class="form-group col-md-2">
-			      <label for="inputinsta">Instagram</label>
-			      <input type="text" name="inputinsta" class="form-control" id="inputinsta" placeholder="Instagram-Nutzername">
-			    </div>
-			    <div class="form-group col-md-2">
-			      <label for="inputfacebook">Facebook</label>
-			      <input type="text" name="inputfacebook" class="form-control" id="inputfacebook" placeholder="Facebook-Profil">
-			    </div>			    
 			</div>
 			<div class="form-row">
-			    <div class="form-group col-md-2">
-			      <label for="inputxing">Xing</label>
-			      <input type="text" name="inputxing" class="form-control" id="inputxing" placeholder="Xing-Profil">
+			    <div class="form-group col-xl-2">
+			      <label for="inputpwd1"class="text-light">Passwort*</label>
+			      <input type="password" name="inputpwd1" class="form-control" id="inputpwd1" placeholder="Passwort">
 			    </div>
-			    <div class="form-group col-md-2">
+			    <div class="form-group col-xl-2">
+			      <label for="inputpwd2"class="text-light">Passwort wiederholen*</label>
+			      <input type="password" name="inputpwd2" class="form-control" id="inputpwd2" placeholder="Passwort">
+			    </div>
+			  </div>
+			  <br>
+			  <div class="form-row">
+			    <div class="form-group col-xl-1">
+			      <label for="inputmatrikel">Matrikelnummer</label>
+			      <input type="text" name="inputmatrikel" class="form-control" id="inputmatrikel" placeholder="Matrikelnummer">
+			    </div>
+			    <div class="form-group col-xl-1">
+				    <label for="inputphone">Telefonnummer</label>
+				    <input type="tel" name="inputphone" class="form-control" id="inputphone" placeholder="Telefonnummer">
+				  </div>
+				<div class="form-group col-xl-2">
+				    <label for="inputaddress">Strasse und Hausnummer</label>
+				    <input type="text" name="inputaddress" class="form-control" id="inputaddress" placeholder="z.B. Schönauer Straße 113a">
+				  </div>
+					<div class="form-group col-xl-2">
+				    <label for="inputcity">Postleitzahl & Stadt</label>
+				    <input type="text" name="inputcity" class="form-control" id="inputcity" placeholder="z.B. 04316 Leipzig">
+			      </div>
+			      <div class="form-group col-xl-2">
+				    <label for="inputcompany">Aktuelle Firma</label>
+				    <input type="text" name="inputcompany" class="form-control" id="inputcompany" placeholder="Firmenname">
+				  	</div>
+						<div class="form-group col-xl-1">
+					    <label for="inputposition">Position</label>
+					    <input type="text" name="inputposition" class="form-control" id="inputposition" placeholder="Position">
+			      	</div>
+			      	<div class="form-group col-xl-1">
+				      <label for="inputtitle">Akademischer Titel</label>
+				      <select id="inputtitle" name="inputtitle" class="form-control">
+				        <option selected>Auswählen...</option>
+				        <option>Bachelor</option>
+				        <option>Master</option>
+				        <option>Diplom</option>
+				        <option>Doktor</option>
+				        <option>Professor</option>
+				      </select>
+			    	</div>
+
+			  </div>
+			  <br>
+			  <div class="form-row">
+			    <div class="form-group col-xl-1">
+			      <label for="inputtwitter">Twitter</label>
+			      <input type="text" name="inputtwitter" class="form-control" id="inputtwitter" placeholder="Nutzername">
+			    </div>
+			    <div class="form-group col-xl-1">
+			      <label for="inputinsta">Instagram</label>
+			      <input type="text" name="inputinsta" class="form-control" id="inputinsta" placeholder="Nutzername">
+			    </div>
+			    <div class="form-group col-xl-2">
+			      <label for="inputfacebook">Facebook</label>
+			      <input type="text" name="inputfacebook" class="form-control" id="inputfacebook" placeholder="Facebook-Profil (URL)">
+			    </div>
+			    <div class="form-group col-xl-2">
+			      <label for="inputxing">Xing</label>
+			      <input type="text" name="inputxing" class="form-control" id="inputxing" placeholder="Xing-Profil (URL)">
+			    </div>
+			    <div class="form-group col-xl-2">
 			      <label for="inputlinkedin">LinkedIn</label>
-			      <input type="text" name="inputlinkedin" class="form-control" id="inputlinkedin" placeholder="LinkedIn-Profil">
+			      <input type="text" name="inputlinkedin" class="form-control" id="inputlinkedin" placeholder="LinkedIn-Profil (URL)">
+			    </div>
+			    <div class="form-group col-xl-2">
+			      <label for="inputother">Sonstiges</label>
+			      <input type="text" name="inputother" class="form-control" id="inputother" placeholder="Sonstiges (URL)">
+			    </div>				    
+			</div>
+			<br>
+			<div class="form-row">
+			    <div class="form-group col-xl-6">
+			    	<input type="checkbox" id="isSupportingMember" name="inputisSupportingMember" value="valueisSupportingMember">
+			    	<label for="inputisSupportingMember">Interesse an Mitgliedschaft im Förderverein der Staatlichen Studienakademie Leipzig e.V.</label>
+			      
+			    </div>
+			</div>
+			<div class="form-row">
+			    <div class="form-group col-xl-6">
+			    	<input type="checkbox" id="isSendMail" name="inputisSendMail" value="valueisSendMail">
+			      	<label for="inputisSendMail">Die Berufsakademie darf mich über meine Mail-Adresse kontaktieren.</label>
+			      </div>
+			</div>
+			<h2>Statistik</h2>
+			<p>Die folgenden Angaben sowie ggf. weitere Informationen aus öffentlichen Quellen (z.B. Soziale Netzwerke wie Xing) werden ausschließlich für statistische Zwecke erhoben. Es erfolgt keine personenbezogene Speicherung, Auswertung oder sonstige Nutzung. Zweck ist die Nachvollziehbarkeit der Entwicklungen unserer ehemaligen Studenten, um dies für die Unterstützung unserer zukünftigen Studenten berücksichtigen zu können. Die Angabe der folgenden Informationen ist freiwillig. Ein Wiederruf ist nicht möglich, da keine Zuordnung zu ihrer Person möglich ist.</p>
+			<p>  Die Daten beziehen sich auf ihren Status unmittelbar nach Studienabschluss.</p>
+
+			<div class="form-row">
+			    <div class="form-group col-xl-2">
+			    	<input type="checkbox" id="isSameCompany" name="inputisSameCompany" value="valueisSameCompany">
+			      	<label for="inputisSameCompany">Vom Praxispartner übernommen</label>
+			    </div>
+			    <div class="form-group col-xl-2">
+			    	<input type="checkbox" id="isDifferentCompany" name="inputisDifferentCompany" value="valueisDifferentCompany">
+			      	<label for="inputisDifferentCompany">Von anderem Unternehmen eingestellt</label>
+			    </div>
+			    <div class="form-group col-xl-2">
+				    <input type="text" name="inputCompany2" class="form-control" id="inputCompany2" placeholder="Welches Unternehmen?">
+				</div>
+			</div>
+
+			<div class="form-row">
+			    <div class="form-group col-xl-2">
+			    	<input type="checkbox" id="isFreelancer" name="inputisFreelancer" value="valueisFreelancer">
+			      	<label for="inputisFreelancer">Selbständigkeit?</label>
+			    </div>
+			    <div class="form-group col-xl-2">
+			    	<input type="checkbox" id="isFederal" name="inputisFederal" value="valueisFederal">
+			      	<label for="inputisFederal">Bundesfreiwilligendienst</label>
+			    </div>
+			    <div class="form-group col-xl-2">
+			    	<input type="checkbox" id="isFurtherEducation" name="inputisFurtherEducation" value="valueisFurtherEducation">
+			      	<label for="inputisFurtherEducation">Weiteres Studium</label>
 			    </div>
 			    
 			</div>
 			<div class="form-row">
-			    <div class="form-group col-md-6">
-			    	<label for="inputisSupportingMember">Interesse an Mitgliedschaft im Förderverein der Staatlichen Studienakademie Leipzig e.V.</label>
-			      <input type="checkbox" id="isSupportingMember" name="inputisSupportingMember" value="valueisSupportingMember">
-			      
+			    
+			    <div class="form-group col-xl-2">
+			    	<input type="checkbox" id="isForeignCountry" name="inputisForeignCountry" value="valueisForeignCountry">
+			      	<label for="inputisForeignCountry">Auslandspraktika?</label>
 			    </div>
+			    <div class="form-group col-xl-2">
+			    	<input type="checkbox" id="isWorkSeeking" name="inputisWorkSeeking" value="valueisWorkSeeking">
+			      	<label for="inputisWorkSeeking">(Noch) arbeitssuchend?</label>
+			    </div>
+			    <div class="form-group col-xl-2">
+				    <input type="text" name="inputfurtherinformation" class="form-control" id="inputfurtherinformation" placeholder="Sonstiges">
+				</div>
 			</div>
-			
 
-			  <button type="submit" name= "submit"class="btn btn-primary">Registrieren</button>
+			<button type="submit" name= "submit"class="btn btn-primary">Registrieren</button>
 	</form>
 
 
