@@ -33,7 +33,7 @@ CREATE TABLE `Registrierungsbefragung` (
   `gradyear` year(4) NOT NULL,
   `course` varchar(5) COLLATE latin1_german1_ci NOT NULL,
   `isSameCompany` tinyint(1) DEFAULT NULL,
-  `isDiffrentCompany` tinyint(1) DEFAULT NULL,
+  `isDifferentCompany` tinyint(1) DEFAULT NULL,
   `Company` varchar(70) COLLATE latin1_german1_ci DEFAULT NULL,
   `isFreelancer` tinyint(1) DEFAULT NULL,
   `isFederal` tinyint(1) DEFAULT NULL,
