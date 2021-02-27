@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Anmeldung` (
   `nid` int(11) NOT NULL,
-  `password` varchar(15) COLLATE latin1_german1_ci NOT NULL
+  `password` varchar(255) COLLATE latin1_german1_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german1_ci;
 
 --
