@@ -2,6 +2,8 @@
 include_once '../header.php'
 ?>
 <?php
+    if(isset($_SESSION['nid']))
+    {
     $nid=$_GET["parameter"];
     $vname=$_GET["parameter2"];
     $nname=$_GET["parameter3"];
@@ -15,6 +17,11 @@ include_once '../header.php'
     echo '<label class="label" for="Ausgabe">Dem Nutzer wurde erfolgreich die Rolle Administrator zugeweisen</label>';
     echo '<br><br/>';
     echo '<a href="../contacts.php"><button>Zurück zur Kontaktseite</button></a>';
+    }
+    else
+    {
+        echo "Bitte melden Sie sich erst an";
+    }
 ?>
 <?php
 include_once '../footer.php'
