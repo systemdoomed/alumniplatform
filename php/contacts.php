@@ -14,7 +14,7 @@ include_once 'header.php'
               if($status!=1)
               {
                   echo '<form action="include/search.inc.php" method="post">';
-                  echo '<label>Suche2</label>';
+                  echo '<label>Suche</label>';
                   echo '<table>';
                   echo '<tr>';
                   echo '<div class="form-group col-md-3">';
@@ -64,6 +64,7 @@ include_once 'header.php'
                   }
                   else
                   {
+                      $stmt = mysqli_stmt_init($conn);
                       $selektor="";
                       if(isset($_GET["parameter"]))
                       {
@@ -73,8 +74,38 @@ include_once 'header.php'
                       $orderby="ORDER BY gradyear desc, course asc, state asc";
                       if($selektor=="search")
                       {
-                          $where=$_GET["parameter2"];
-                          $abfrage=$rumpf." ".$where." ".$orderby;
+                          $firstname="%".$_GET["parameter2"]."%";
+                          $lastname="%".$_GET["parameter3"]."%";
+                          $company="%".$_GET["parameter4"]."%";
+                          $position="%".$_GET["parameter5"]."%";
+                          if($status==3)
+                              {
+                                  $gradyear = $_GET["parameter6"];
+                                  $course = "%".$_GET["parameter7"]."%";
+                                  if($gradyear!="")
+                                  {
+                                      $where="WHERE firstname LIKE ? AND lastname LIKE ? AND gradyear=? AND course LIKE ? AND company LIKE ? AND position LIKE ?";
+                                      $abfrage=$rumpf." ".$where." ".$orderby;
+                                      mysqli_stmt_prepare($stmt,$abfrage);
+                                      mysqli_stmt_bind_param($stmt,"ssssss",$firstname,$lastname,$gradyear,$course,$company,$position);
+                                  }
+                                  else
+                                  {
+                                      $where="WHERE firstname LIKE ? AND lastname LIKE ? AND course LIKE ? AND company LIKE ? AND position LIKE ?";
+                                      $abfrage=$rumpf." ".$where." ".$orderby;
+                                      mysqli_stmt_prepare($stmt,$abfrage);
+                                      mysqli_stmt_bind_param($stmt,"sssss",$firstname,$lastname,$course,$company,$position);
+                                 }
+                              }
+                          else
+                              {
+                                  $gradyear=getGradyear($sessionnid,$conn);
+                                  $course=getCourse($sessionnid,$conn);
+                                  $where="WHERE firstname LIKE ? AND lastname LIKE ? AND gradyear=? AND course LIKE ? AND company LIKE ? AND position LIKE ?";
+                                  $abfrage=$rumpf." ".$where." ".$orderby;
+                                  mysqli_stmt_prepare($stmt,$abfrage);
+                                  mysqli_stmt_bind_param($stmt,"ssssss",$firstname,$lastname,$gradyear,$course,$company,$position);
+                              }
                       }
                       else
                       {
@@ -88,11 +119,13 @@ include_once 'header.php'
                               $course=getCourse($sessionnid,$conn);
                               $abfrage=$rumpf.' WHERE gradyear='.$gradyear.' AND course="'.$course.'" '.$orderby;
                           }
+                          mysqli_stmt_prepare($stmt,$abfrage);
                       }
-                      if ($result = mysqli_query($conn, $abfrage))
+                      mysqli_stmt_execute($stmt);
+                      if ($result = mysqli_stmt_get_result($stmt))
                       {
                           $count = mysqli_num_rows($result);
-                          echo '<table style="width:70%" class="table-hover table-borderless">';
+                          echo '<table width="100%" height="45%" class="table-hover table-borderless"  align=center border=2>';
                           echo '<thead>';
                           echo '<th class=th>'.'Abschlussjahr'.'</th>';
                           echo '<th class=th>'.'Studienrichtung'.'</th>';
