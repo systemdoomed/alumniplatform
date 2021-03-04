@@ -1,4 +1,4 @@
-# alumniplatform
+# alumniplattform
 1. Installation
 
 Eine Alumni-Plattform der ehemalige Studenten der Berufsakademie Leipzig. Diese soll die Kommunikation untereinander ermöglichen und Kontaktdaten bereitstellen. 
