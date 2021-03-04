@@ -1,4 +1,6 @@
 # alumniplatform
+1. Installation
+
 Eine Alumni-Plattform der ehemalige Studenten der Berufsakademie Leipzig. Diese soll die Kommunikation untereinander ermöglichen und Kontaktdaten bereitstellen. 
 
 Anmeldedaten an der Datenbank sind über die dbh.php.inc Datei im Ordner/php/includes anzupassen.
@@ -18,6 +20,8 @@ Dann die Datenbank Oberfläche mittels diesem Link aufrufen http://localhost/php
 Nun die Datenbank erstellen und die SQL Dateien aus dem Repository importieren in diese Datenbank.
 
 Im Ordner XAMPP->xamppfiles->->htdocs->php Die php-Dateien aus dem git mit dieser Dateistruktur kopieren.
+
+2. Nutzung
 
 Um nun die Webanwendung zu starten, localhost/index.php eingeben.
 
