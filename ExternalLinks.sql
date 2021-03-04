@@ -40,7 +40,8 @@ CREATE TABLE `ExternalLinks` (
 --
 -- Daten für Tabelle `ExternalLinks`
 --
-
+INSERT INTO `ExternalLinks` (`nid`, `twitter`, `instagram`, `xing`, `linkedIn`, `others`) VALUES
+(1, '', '', '', '', '');
 --
 -- Indizes der exportierten Tabellen
 --
