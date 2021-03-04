@@ -41,4 +41,4 @@ Nachdem der Nutzer vom Administrator verifiziert wurde (Kontakt Menü) kann der 
 
 Damit hat er Zugriff zu den Daten seiner Kommilitonen die die selbe Studienrichtung und Abschlussjahr haben.
 
-Es lässt sichauch darin suchen
+Es lässt sich auch darin suchen.
