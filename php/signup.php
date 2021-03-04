@@ -12,6 +12,9 @@ include_once 'header.php';
 		else if ($_GET["error"] == "invalidemail") {
 			echo '<p class="bg-dark text-center text-light">Bitte wählen sie eine gültige Mail-Adresse!</p>';
 		}
+		else if ($_GET["error"] == "usedemail") {
+			echo '<p class="bg-dark text-center text-light">Die eingegebene Mail-Adresse ist bereits vergeben!</p>';
+		}
 		else if ($_GET["error"] == "nopwdmatch") {
 			echo '<p class="bg-dark text-center text-light">Bitte tragen sie das gleiche Passwort zweimal ein!</p>';
 		}
@@ -60,6 +63,7 @@ include_once 'header.php';
 			        <option>SP</option>
 			        <option>SW</option>
 			        <option>TM</option>
+			        <option>BA</option>
 			      </select>
 			    </div>
 			    <div class="form-group col-xl-1">

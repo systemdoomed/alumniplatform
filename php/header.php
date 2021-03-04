@@ -25,7 +25,6 @@
 						if (isset($_SESSION["nid"])) {
 							echo "<li class='nav-item'><a class='nav-link' href='profile.php'>Mein Profil</a></li>";
 							echo "<li class='nav-item'><a class='nav-link' href='contacts.php'>Kontakte</a></li>";
-							echo "<li class='nav-item'><a class='nav-link' href='gallery.php'>Gallerie</a></li>";
 							echo "<li class='nav-item'><a class='nav-link' href='include/logout.inc.php'>Logout</a></li>";
 						}
 						

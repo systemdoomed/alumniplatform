@@ -73,6 +73,33 @@ function userExists($conn,$firstname,$lastname,$course,$gradyear,$mail){
 
 }
 
+function checkMail($conn,$mail){
+	
+	$sql = "SELECT * FROM Nutzer where mail = ?;";
+
+	$stmt = mysqli_stmt_init($conn);
+
+	if (!mysqli_stmt_prepare($stmt,$sql)) {
+		header("location: ../signup.php?error=usedmail");
+		exit();
+	}
+
+	mysqli_stmt_bind_param($stmt,"s",$mail);
+	mysqli_stmt_execute($stmt);
+
+	$resultData = mysqli_stmt_get_result($stmt);
+
+	if ($row = mysqli_fetch_assoc($resultData)) {
+			return $row;
+	}
+	else{
+		$result = false;
+		return $result;
+	}
+	mysqli_stmt_close($stmt);
+
+}
+
 function getNid($conn,$firstname,$lastname,$course,$gradyear,$mail){
 	
 	$sql = "SELECT nid FROM Nutzer where firstname = ? AND lastname = ? AND course = ? AND gradyear = ? AND mail = ?;";
@@ -140,6 +167,24 @@ function insertLinks($conn,$nid,$twitter,$insta, $xing, $linkedin){
 	
 }
 
+function insertStatistic($conn, $course, $gradyear,$company2,$furtherinformation,$isSameCompany,$isDifferentCompany,$isFreelancer,$isFederal,$isFurtherEducation,$isForeignCountry,$isWorkSeeking){
+
+	$sql = "INSERT INTO Registrierungsbefragung (gradyear,course,isSameCompany,isDifferentCompany,Company,isFreelancer,isFederal,isFurtherEducation,isForeignCountry,isWorkSeeking,furtherinformation) VALUES(?,?,?,?,?,?,?,?,?,?,?);";
+
+	$stmt = mysqli_stmt_init($conn);
+
+	if (!mysqli_stmt_prepare($stmt,$sql)) {
+		header("location: ../signup.php?error=stmtfailedstats");
+		exit();
+	}
+
+	mysqli_stmt_bind_param($stmt,"ssiisiiiiis",$gradyear,$course,$isSameCompany,$isDifferentCompany,$company2,$isFreelancer,$isFederal,$isFurtherEducation,$isForeignCountry,$isWorkSeeking,$furtherinformation);
+	mysqli_stmt_execute($stmt);
+
+	
+	mysqli_stmt_close($stmt);
+	
+}
 
 function createUser($conn, $firstname, $lastname,$mail,$isSendMail, $pwd1, $matrikel, $course, $gradyear, $school, $phone,$gender, $address, $city, $company , $position, $title, $twitter, $insta, $facebook, $xing, $linkedin, $isSupportingMember,$company2,$furtherinformation,$isSameCompany,$isDifferentCompany,$isFreelancer,$isFederal,$isFurtherEducation,$isForeignCountry,$isWorkSeeking){
 	
@@ -167,7 +212,7 @@ function createUser($conn, $firstname, $lastname,$mail,$isSendMail, $pwd1, $matr
 
 	insertPwd($conn,$nid,$pwd1);
 	insertLinks($conn,$nid,$twitter,$insta,$xing,$linkedin);
-	insertStatistic();
+	insertStatistic($conn, $course, $gradyear,$company2,$furtherinformation,$isSameCompany,$isDifferentCompany,$isFreelancer,$isFederal,$isFurtherEducation,$isForeignCountry,$isWorkSeeking);
 
 	header("location: ../signup.php?error=none");
 	exit();
@@ -278,34 +323,98 @@ function loginUser($conn,$mail,$pwd){
 }
 
 
-/*
-function loginCheck($conn,$mail){
-	
-	$sql = "SELECT * FROM Nutzer where mail = 'tony_mahn@outlook.de';";
-	$newmail = "tony_mahn@outlook.de";
+// ------------------------- PROFIL UPDATE -------------------------
+
+
+
+
+function updateUser($conn, $nid,$firstname, $lastname,$isSendMail, $pwd1, $matrikel, $phone,$gender, $address, $city, $company , $position, $title, $twitter, $insta, $facebook, $xing, $linkedin, $isSupportingMember,$state,$others){
+
+	$hashedPwd = password_hash($pwd1, PASSWORD_DEFAULT);
+
+	$sql = "UPDATE Nutzer SET firstname = ?, lastname = ?, isSendMail = ?, matrikel = ?, phone = ?, gender = ?, address = ?, city = ?, company = ?, position = ?, title = ?, isSupportingMember = ?, state = ? where nid = ? ;";
+
 	$stmt = mysqli_stmt_init($conn);
 
-	//mysqli_stmt_bind_param($stmt,"s",$newmail);
+	if (!mysqli_stmt_prepare($stmt,$sql)) {
+		header("location: ../profile.php?error=stmtfailed");
+		exit();
+	}
+
+	mysqli_stmt_bind_param($stmt,"ssissssssssiiisssssi",$firstname,$lastname,$isSendMail,$matrikel,$phone,$gender,$address,$city,$company,$position,$title,$isSupportingMember,$state,$nid);
 	mysqli_stmt_execute($stmt);
-
-	$resultData = mysqli_stmt_get_result($stmt);
-
-	if ($row = mysqli_fetch_assoc($resultData)) {
-			return $row;
-	}
-	else{
-		$result = false;
-		return $result;
-	}
+		
 	mysqli_stmt_close($stmt);
 
-}*/
+	updatePwd($conn,$hashedPwd,$nid);
+	updateLinks($conn,$twitter,$instagram,$xing,$linkedIn,$others,$nid);
 
 
+	header("location: ../profile.php?error=none");
+	exit();
+
+}
+
+function updatePwd($conn,$hashedPwd,$nid){
+	
+	$sql = "UPDATE Anmeldung SET password = ? where nid = ? ; ";
+
+	$stmt = mysqli_stmt_init($conn);
+
+	if (!mysqli_stmt_prepare($stmt,$sql)) {
+		header("location: ../profile.php?error=stmtfailedpwd");
+		exit();
+	}
+	mysqli_stmt_bind_param($stmt,"si",$hashedPwd,$nid);
+	mysqli_stmt_execute($stmt);
+
+	mysqli_stmt_close($stmt);
+
+}
+function updateLinks($conn,$twitter,$instagram,$xing,$linkedIn,$others,$nid){
+	
+	$sql = "UPDATE ExternalLinks SET twitter = ?, instagram = ?, xing = ?, linkedIn = ?, others = ? where nid = ?;";
+
+	$stmt = mysqli_stmt_init($conn);
+
+	if (!mysqli_stmt_prepare($stmt,$sql)) {
+		header("location: ../profile.php?error=stmtfailedlinks");
+		exit();
+	}
+
+	mysqli_stmt_bind_param($stmt,"sssssi",$twitter,$instagram,$xing,$linkedIn,$others,$nid);
+	mysqli_stmt_execute($stmt);
+
+	mysqli_stmt_close($stmt);
+
+}
 
 
+/*
+function updateUser($conn, $nid,$firstname, $lastname,$isSendMail, $pwd1, $matrikel, $phone,$gender, $address, $city, $company , $position, $title, $twitter, $insta, $facebook, $xing, $linkedin, $isSupportingMember,$state,$others){
+
+	$hashedPwd = password_hash($pwd1, PASSWORD_DEFAULT);
+
+	$sql = "UPDATE Nutzer SET firstname = ?, lastname = ?, isSendMail = ?, matrikel = ?, phone = ?, gender = ?, address = ?, city = ?, company = ?, position = ?, title = ?, isSupportingMember = ?, state = ? where nid = ? ; UPDATE Anmeldung SET password = ? where nid = ? ; UPDATE ExternalLinks SET twitter = ?, instagram = ?, xing = ?, linkedIn = ?, others = ? where nid = ?;";
+
+	$stmt = mysqli_stmt_init($conn);
+
+	if (!mysqli_stmt_prepare($stmt,$sql)) {
+		header("location: ../profile.php?error=stmtfailed");
+		exit();
+	}
+
+	mysqli_stmt_bind_param($stmt,"ssissssssssiiisisssssi",$firstname,$lastname,$isSendMail,$matrikel,$phone,$gender,$address,$city,$company,$position,$title,$isSupportingMember,$state,$nid,$hashedPwd,$nid,$twitter,$instagram,$xing,$linkedIn,$others,$nid);
+	mysqli_stmt_execute($stmt);
+		
+	mysqli_stmt_close($stmt);
 
 
+	header("location: ../profile.php?error=none");
+	exit();
+
+}
+*/
 
 
 

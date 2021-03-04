@@ -24,7 +24,7 @@
             <a href="https://www.ba-sachsen.de/" class="text-dark">Berufsakademie Sachsen</a>
           </li>
           <li>
-            <a href="#!" class="text-dark">Github</a>
+            <a href="https://github.com/systemdoomed/alumniplatform" class="text-dark">Github</a>
           </li>
         </ul>
       </div>

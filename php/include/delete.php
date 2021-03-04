@@ -14,18 +14,12 @@ include_once '../header.php'
     mysqli_stmt_bind_param($stmt,"i",$nid);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    $sql = "DELETE FROM Anmeldung WHERE NID=?";
-    $stmt = mysqli_stmt_init($conn);
-    mysqli_stmt_prepare($stmt,$sql);
-    mysqli_stmt_bind_param($stmt,"i",$nid);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-    echo '<label class="label" for="Ausgabe">Der Nutzer wurde erfolgreich gelöscht</label>';
+    echo '<label class="label" for="Ausgabe"><h4>Der Nutzer wurde erfolgreich gelöscht</h4></label>';
     echo '<br></br>';
-    echo '<a href="../contacts.php"><button>Zurück zur Kontaktseite</button></a>';
+    echo '<a href="../contacts.php"><button type="button" class="btn btn-primary>Zurück zur Kontaktseite</button></a>';
         }else
     {
-        echo "Bitte melden Sie sich zuerst an";
+        echo "<h4>Bitte melden Sie sich zuerst an.</h4>";
     }
 ?>
 <?php

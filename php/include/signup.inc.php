@@ -1,5 +1,8 @@
 <?php
 
+require 'dbh.inc.php';
+require 'session.inc.php';
+
 if (isset($_POST["submit"])) {
 	$firstname = $_POST["inputfirstname"];
 	$lastname = $_POST["inputlastname"];
@@ -93,6 +96,11 @@ if (isset($_POST["submit"])) {
 	require_once 'dbh.inc.php';
 	require_once 'functions.inc.php';
 
+	if ($title == "Auswählen...") {
+		$title = '';
+	}
+	
+
 	if ($course == "Auswählen..." || $gender == "Auswählen..." || $school == "Auswählen...") {
 		header("location: ../signup.php?error=nochoice");
 		exit();
@@ -106,6 +114,11 @@ if (isset($_POST["submit"])) {
 	if (invalidEmail($mail) !== false) {
 
 		header("location: ../signup.php?error=invalidemail");
+		exit();
+	}
+	if (checkMail($conn,$mail) !== false) {
+
+		header("location: ../signup.php?error=usedemail");
 		exit();
 	}
 	if (pwdMatch($pwd1,$pwd2) !== false) {

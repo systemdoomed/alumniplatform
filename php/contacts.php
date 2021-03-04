@@ -14,7 +14,8 @@ include_once 'header.php'
               if($status!=1)
               {
                   echo '<form action="include/search.inc.php" method="post">';
-                  echo '<label>Suche</label>';
+                  echo '<p class="text-right">Eingeloggt als: '.getMail($sessionnid,$conn).'</p>';
+                  echo '<h3>Suche</h3>';
                   echo '<table>';
                   echo '<tr>';
                   echo '<div class="form-group col-md-3">';
@@ -49,10 +50,10 @@ include_once 'header.php'
                   echo '<tr>';
                   echo '</div>';
                   echo '<div class="form-group col-md-3">';
-                  echo '<td><a href="include/search.inc.php"> <button> suchen </button></a></td>';
+                  echo '<td><a href="include/search.inc.php"> <button class="btn btn-primary"> Suchen </button></a></td>';
                   echo '</div>';
                   echo '<div class="form-group col-md-3">';
-                  echo '<td><a href="contacts.php"> <button> Suche zurücksetzen </button></a></td>';
+                  echo '<td><a href="contacts.php"> <button class="btn btn-secondary"> Suche zurücksetzen </button></a></td>';
                   echo '</div>';
                   echo '</tr>';
                   echo '</table>';
@@ -125,43 +126,45 @@ include_once 'header.php'
                       if ($result = mysqli_stmt_get_result($stmt))
                       {
                           $count = mysqli_num_rows($result);
-                          echo '<table width="100%" height="45%" class="table-hover table-borderless"  align=center border=2>';
+                          echo '<table width="100%" height="45%" class="table-hover table-dark table-bordered table-responsive"  >';
                           echo '<thead>';
-                          echo '<th class=th>'.'Abschlussjahr'.'</th>';
-                          echo '<th class=th>'.'Studienrichtung'.'</th>';
-                          echo '<th class=th>'.'Vorname'.'</th>';
-                          echo '<th class=th>'.'Nachname'.'</th>';
-                          echo '<th class=th>'.'Firma'.'</th>';
-                          echo '<th class=th>'.'Position'.'</th>';
-                          echo '<th class=th>'.'Email-Adresse'.'</th>';
-                          echo '<th class=th>'.'Twittername'.'</th>';
-                          echo '<th class=th>'.'Instagram'.'</th>';
-                          echo '<th class=th>'.'Xing'.'</th>';
-                          echo '<th class=th>'.'LinkedIn'.'</th>';
-                          echo '<th class=th>'.'Hochschule'.'</th>';
-                          echo '<th class=th>'.'Sonstiges'.'</th>';
-                          echo '<th class=th>'.'Status'.'</th>';
-                          echo '<th class=th>'.'Verifizieren'.'</th>';
+                          echo '<tr class="">';
+                          echo '<th class="th">'.'Abschlussjahr'.'</th>';
+                          echo '<th class="th">'.'Studienrichtung'.'</th>';
+                          echo '<th class="th">'.'Vorname'.'</th>';
+                          echo '<th class="th">'.'Nachname'.'</th>';
+                          echo '<th class="th">'.'Firma'.'</th>';
+                          echo '<th class="th">'.'Position'.'</th>';
+                          echo '<th class="th">'.'Email-Adresse'.'</th>';
+                          echo '<th class="th">'.'Twittername'.'</th>';
+                          echo '<th class="th">'.'Instagram'.'</th>';
+                          echo '<th class="th">'.'Xing'.'</th>';
+                          echo '<th class="th">'.'LinkedIn'.'</th>';
+                          echo '<th class="th">'.'Hochschule'.'</th>';
+                          echo '<th class="th">'.'Sonstiges'.'</th>';
+                          echo '<th class="th">'.'Status'.'</th>';
+                          echo '<th class="th">'.'Verifizieren'.'</th>';
                           if($status==3)
                                 {
-                                    echo '<th class=th>'.'Löschen'.'</th>';
-                                    echo '<th class=th>'.'zum Administrator machen'.'</th>';
+                                    echo '<th class="th">'.'Löschen'.'</th>';
+                                    echo '<th class="th">'.'zum Administrator machen'.'</th>';
                                 }
+                                echo '</tr>';
                                 echo '</thead>';
                                 echo '<tbody>';
                                 for ($i = 0; $i < $count; $i++)
                                     {
-                                        echo '<tr>';
+                                        echo '<tr class="">';
                                         $row = mysqli_fetch_array($result);
                                         for ($j = 1; $j < 15; $j++)
                                         {
-                                            echo "<td class=td>{$row[$j]}</td>";
+                                            echo "<td class='td text-center'>{$row[$j]}</td>";
                                         }
                                         if($row[15]==1)
                                         {
                                             if($j==15)
                                             {
-                                                echo '<td class=td> <a href="include/contacts.inc.php?parameter='.$row[0].'&parameter2=verify&parameter3='.$row[3].'&parameter4='.$row[4].'"> <button>verifizieren </button></a></td>';
+                                                echo '<td class="td"> <a href="include/contacts.inc.php?parameter='.$row[0].'&parameter2=verify&parameter3='.$row[3].'&parameter4='.$row[4].'"> <button class="btn btn-success">verifizieren </button></a></td>';
                                             }
                                         }
                                         else
@@ -173,11 +176,11 @@ include_once 'header.php'
                                         {
                                             if($j==16)
                                             {
-                                                echo '<td class=td> <a href="include/contacts.inc.php?parameter='.$row[0].'&parameter2=delete&parameter3='.$row[3].'&parameter4='.$row[4].'"> <button>delete </button></a></td>';
+                                                echo '<td class=td> <a href="include/contacts.inc.php?parameter='.$row[0].'&parameter2=delete&parameter3='.$row[3].'&parameter4='.$row[4].'"> <button class="btn btn-danger">delete </button></a></td>';
                                             }
                                             if($row[15]==2)
                                             {
-                                                echo '<td class=td> <a href="include/contacts.inc.php?parameter='.$row[0].'&parameter2=adminstrieren&parameter3='.$row[3].'&parameter4='.$row[4].'"> <button>administrator </button></a></td>';
+                                                echo '<td class=td> <a href="include/contacts.inc.php?parameter='.$row[0].'&parameter2=adminstrieren&parameter3='.$row[3].'&parameter4='.$row[4].'"> <button class="btn btn-info">administrator </button></a></td>';
                                             }
                                             else
                                             {
@@ -194,17 +197,17 @@ include_once 'header.php'
               }
               else
               {
-                  echo "Bitte lassen Sie sich erst verifizieren";
+                  echo "<h4>Bitte lassen Sie sich erst verifizieren</h4>";
               }
           }
           else
           {
-                echo "Kein berechtigter Nutzer";
+                echo "<h4>Kein berechtigter Nutzer</h4>";
           }
     }
     else
     {
-        echo "Bitte loggen Sie sich ein";
+        echo "<h4>Bitte loggen Sie sich ein.</h4>";
     }
 ?>
 
