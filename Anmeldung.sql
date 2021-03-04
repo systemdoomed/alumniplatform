@@ -36,7 +36,8 @@ CREATE TABLE `Anmeldung` (
 --
 -- Daten für Tabelle `Anmeldung`
 --
-
+INSERT INTO `Anmeldung` (`nid`, `password`) VALUES
+(1, '$2y$10$CU3/E4a9.suD6sMS6YM/ZO6gdBs2gK2iK/dEPyS89algsunwjuEy.');
 
 --
 -- Indizes der exportierten Tabellen
