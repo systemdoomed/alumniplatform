@@ -53,7 +53,7 @@ CREATE TABLE `Nutzer` (
 -- Daten für Tabelle `Nutzer`
 --
 INSERT INTO `Nutzer` (`nid`, `firstname`, `lastname`, `course`, `school`, `gradyear`, `mail`, `state`, `isSendMail`, `matrikel`, `address`, `city`, `phone`, `company`, `position`, `gender`, `isSupportingMember`, `title`) VALUES
-(1, 'root', 'root', 'CS', 'BA Leipzig', 2021, 'root@root.de', 3, 1, '000000', '', '', '', '', '', 'm', 1, 'Auswählen...');
+(1, 'root', 'root', 'CS', 'BA Leipzig', 2021, 'root@root.de', 3, 1, '000000', '', '', '', '', '', 'm', 1, '');
 --
 -- Indizes der exportierten Tabellen
 --
