@@ -16,7 +16,7 @@ include_once '../header.php'
     mysqli_stmt_close($stmt);
     echo '<label class="label" for="Ausgabe"><h4>Der Nutzer wurde erfolgreich verifiziert</h4></label>';
     echo '<br></br>';
-    echo '<a href="../contacts.php"><button type="button" class="btn btn-primary>Zurück zur Kontaktseite</button></a>';
+    echo '<a href="../contacts.php"><button type="button" class="btn btn-primary">Zurück zur Kontaktseite</button></a>';
     }else{
         echo "<h4>Bitte melden Sie sich zuerst an.</h4>";
     }
