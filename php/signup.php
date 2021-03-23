@@ -27,6 +27,9 @@ include_once 'header.php';
 		else if ($_GET["error"] == "nochoice") {
 			echo '<p class="bg-dark text-center text-light">Sie haben bei einem oder mehr der Auswahlfelder keine Auswahl getroffen!</p>';
 		}
+        else if ($_GET["error"] == "noDataPrivacy") {
+            echo '<p class="bg-dark text-center text-light">Sie haben die Datenschutzerklärung noch nicht akzeptiert</p>';
+        }
 		else if ($_GET["error"] == "none") {
 			echo '<p class="bg-dark text-center text-light">Sie haben sich erfolgreich registriert!</p>';
 		}
@@ -50,7 +53,10 @@ include_once 'header.php';
 			      <label for="inputmail" class="text-light">Mail-Adresse*</label>
 			      <input type="email" name="inputmail" class="form-control" id="inputmail" placeholder="Mail-Adresse">
 			   </div>
-			   <div class="form-group col-xl-1">
+        </div>
+        <br>
+        <div class="form-row">
+			   <div class="form-group col-xl-2">
 			      <label for="inputcourse"class="text-light">Studienrichtung*</label>
 			      <select id="inputcourse" name="inputcourse" class="form-control">
 			        <option selected>Auswählen...</option>
@@ -66,7 +72,7 @@ include_once 'header.php';
 			        <option>BA</option>
 			      </select>
 			    </div>
-			    <div class="form-group col-xl-1">
+			    <div class="form-group col-xl-2">
 			      <label for="inputgender" class="text-light">Geschlecht*</label>
 			      <select id="inputgender" name="inputgender" class="form-control">
 			        <option selected>Auswählen...</option>
@@ -75,19 +81,20 @@ include_once 'header.php';
 			        <option>d</option>
 			      </select>
 			    </div>
-			    <div class="form-group col-xl-1">
+			    <div class="form-group col-xl-2">
 			      <label for="inputschool"class="text-light">Hochschule*</label>
 			      <select id="inputschool" name="inputschool" class="form-control">
 			        <option selected>Auswählen...</option>
 			        <option>BA Leipzig</option>
 			      </select>
 			    </div>
-			    <div class="form-group col-xl-1">
+        </div>
+        <div class="form-row">
+			    <div class="form-group col-xl-2">
 			      <label for="inputgradyear"class="text-light">Abschlussjahr*</label>
 			      <input type="text" name="inputgradyear" class="form-control" id="inputgradyear" placeholder="Abschlussjahr">
 			    </div>
-			</div>
-			<div class="form-row">
+			
 			    <div class="form-group col-xl-2">
 			      <label for="inputpwd1"class="text-light">Passwort*</label>
 			      <input type="password" name="inputpwd1" class="form-control" id="inputpwd1" placeholder="Passwort">
@@ -99,11 +106,11 @@ include_once 'header.php';
 			  </div>
 			  <br>
 			  <div class="form-row">
-			    <div class="form-group col-xl-1">
+			    <div class="form-group col-xl-2">
 			      <label for="inputmatrikel">Matrikelnummer</label>
 			      <input type="text" name="inputmatrikel" class="form-control" id="inputmatrikel" placeholder="Matrikelnummer">
 			    </div>
-			    <div class="form-group col-xl-1">
+			    <div class="form-group col-xl-2">
 				    <label for="inputphone">Telefonnummer</label>
 				    <input type="tel" name="inputphone" class="form-control" id="inputphone" placeholder="Telefonnummer">
 				  </div>
@@ -111,6 +118,8 @@ include_once 'header.php';
 				    <label for="inputaddress">Strasse und Hausnummer</label>
 				    <input type="text" name="inputaddress" class="form-control" id="inputaddress" placeholder="z.B. Schönauer Straße 113a">
 				  </div>
+            </div>
+            <div class="form-row">
 					<div class="form-group col-xl-2">
 				    <label for="inputcity">Postleitzahl & Stadt</label>
 				    <input type="text" name="inputcity" class="form-control" id="inputcity" placeholder="z.B. 04316 Leipzig">
@@ -119,11 +128,13 @@ include_once 'header.php';
 				    <label for="inputcompany">Aktuelle Firma</label>
 				    <input type="text" name="inputcompany" class="form-control" id="inputcompany" placeholder="Firmenname">
 				  	</div>
-						<div class="form-group col-xl-1">
+						<div class="form-group col-xl-2">
 					    <label for="inputposition">Position</label>
 					    <input type="text" name="inputposition" class="form-control" id="inputposition" placeholder="Position">
 			      	</div>
-			      	<div class="form-group col-xl-1">
+            </div>
+            <div class="form-row">
+			      	<div class="form-group col-xl-2">
 				      <label for="inputtitle">Akademischer Titel</label>
 				      <select id="inputtitle" name="inputtitle" class="form-control">
 				        <option selected>Auswählen...</option>
@@ -135,17 +146,17 @@ include_once 'header.php';
 				      </select>
 			    	</div>
 
-			  </div>
-			  <br>
-			  <div class="form-row">
-			    <div class="form-group col-xl-1">
+			  
+			    <div class="form-group col-xl-2">
 			      <label for="inputtwitter">Twitter</label>
 			      <input type="text" name="inputtwitter" class="form-control" id="inputtwitter" placeholder="Nutzername">
 			    </div>
-			    <div class="form-group col-xl-1">
+			    <div class="form-group col-xl-2">
 			      <label for="inputinsta">Instagram</label>
 			      <input type="text" name="inputinsta" class="form-control" id="inputinsta" placeholder="Nutzername">
 			    </div>
+        </div>
+        <div class="form-row">
 			    <div class="form-group col-xl-2">
 			      <label for="inputfacebook">Facebook</label>
 			      <input type="text" name="inputfacebook" class="form-control" id="inputfacebook" placeholder="Facebook-Profil (URL)">
@@ -158,6 +169,8 @@ include_once 'header.php';
 			      <label for="inputlinkedin">LinkedIn</label>
 			      <input type="text" name="inputlinkedin" class="form-control" id="inputlinkedin" placeholder="LinkedIn-Profil (URL)">
 			    </div>
+        </div>
+        <div class="form-row">
 			    <div class="form-group col-xl-2">
 			      <label for="inputother">Sonstiges</label>
 			      <input type="text" name="inputother" class="form-control" id="inputother" placeholder="Sonstiges (URL)">
@@ -177,6 +190,12 @@ include_once 'header.php';
 			      	<label for="inputisSendMail">Die Berufsakademie darf mich über meine Mail-Adresse kontaktieren.</label>
 			      </div>
 			</div>
+            <div class="form-row">
+                <div class="form-group col-xl-6">
+                <input type="checkbox" id="acceptConditions" name="acceptConditions" value="acceptConditions">
+                <label for="acceptConditions">Ich akzeptiere die <a href="https://www.ba-leipzig.de/datenschutzerklaerung"> Datenschutzerklärung </a>der Staatlichen Studienakademie Leipzig</label>
+                </div>
+            </div>
 			<h2>Statistik</h2>
 			<p>Die folgenden Angaben sowie ggf. weitere Informationen aus öffentlichen Quellen (z.B. Soziale Netzwerke wie Xing) werden ausschließlich für statistische Zwecke erhoben. Es erfolgt keine personenbezogene Speicherung, Auswertung oder sonstige Nutzung. Zweck ist die Nachvollziehbarkeit der Entwicklungen unserer ehemaligen Studenten, um dies für die Unterstützung unserer zukünftigen Studenten berücksichtigen zu können. Die Angabe der folgenden Informationen ist freiwillig. Ein Wiederruf ist nicht möglich, da keine Zuordnung zu ihrer Person möglich ist.</p>
 			<p>  Die Daten beziehen sich auf ihren Status unmittelbar nach Studienabschluss.</p>
