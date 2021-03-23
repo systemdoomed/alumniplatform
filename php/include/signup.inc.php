@@ -8,6 +8,7 @@ if (isset($_POST["submit"])) {
 	$lastname = $_POST["inputlastname"];
 	$mail = $_POST["inputmail"];
 	$isSendMail = isset($_POST["inputisSendMail"]);
+    	$isDataPrivacy = isset($_POST["acceptConditions"]);
 	$pwd1 = $_POST["inputpwd1"];
 	$pwd2 = $_POST["inputpwd2"];
 	$matrikel = $_POST["inputmatrikel"];
@@ -132,10 +133,23 @@ if (isset($_POST["submit"])) {
 		header("location: ../signup.php?error=userexists");
 		exit();
 	}
+    
+    if(isset($_POST["acceptConditions"])){
+        //voll
+        createUser($conn, $firstname, $lastname,$mail,$isSendMail, $pwd1, $matrikel, $course, $gradyear, $school, $phone,$gender, $address, $city, $company , $position, $title, $twitter, $insta, $facebook, $xing, $linkedin, $isSupportingMember,$company2,$furtherinformation,$isSameCompany,$isDifferentCompany,$isFreelancer,$isFederal,$isFurtherEducation,$isForeignCountry,$isWorkSeeking);
+        header("location: ../signup.php");
+        exit();
+    }
+    else
+    {
+        //leer
+        header("location: ../signup.php?error=noDataPrivacy");
+        exit();
+    }
+    
 	
 
-	createUser($conn, $firstname, $lastname,$mail,$isSendMail, $pwd1, $matrikel, $course, $gradyear, $school, $phone,$gender, $address, $city, $company , $position, $title, $twitter, $insta, $facebook, $xing, $linkedin, $isSupportingMember,$company2,$furtherinformation,$isSameCompany,$isDifferentCompany,$isFreelancer,$isFederal,$isFurtherEducation,$isForeignCountry,$isWorkSeeking);
-
+	
 }
 else {
 	header("location: ../signup.php");
