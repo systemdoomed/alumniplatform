@@ -224,11 +224,11 @@ if(isset($_SESSION['nid']))
                 echo '<label for="inputdescription" class="text-dark">Beschreibung des Events</label>';
                 echo '</div>';
                 echo '<div class="form-group col-xl-1">';
-                echo '<textarea name="inputdescription" cols="90" rows="40"></textarea>';
+                echo '<textarea name="inputdescription" cols="80" rows="10"></textarea>';
                 echo '</div>';
                 echo '</div>';
                 // Finden der Interessengruppen
-                echo '<table width="100%" height="45%" class="table-hover table-dark table-bordered table-responsive">';
+                echo '<table  class=" table table-hover table-dark table-bordered text-center">';
                 echo '<thead>';
                 echo '<tr class="">';
                 echo '<th class="th">'.'Personengruppe auswählen'.'</th>';
@@ -260,10 +260,11 @@ if(isset($_SESSION['nid']))
         }
         elseif($mode == "displaylist")
         {
-            include 'include/eventfunctions.inc.php';
-            echo "Übersicht der Events";
+            /*include 'include/eventfunctions.inc.php';
+            echo '<h1>Übersicht der Events</h1>';
             echo '<br>';
-            echo 'Aktuelle Events';
+            echo '<h3>Aktuelle Events</h3>';
+            echo '<br>';
             echo '<table width="100%" height="45%" class="table-hover table-dark table-bordered table-responsive">';
             echo '<tr>';
             echo '<th>Startdatum</th>';
@@ -287,8 +288,64 @@ if(isset($_SESSION['nid']))
             echo '</tr>';
             echo '</table>';
             echo "<br>";
-            echo 'abgelaufene Events';
+            echo '<h3>abgelaufene Events</h3>';echo '<br>';
             echo '<table width="100%" height="45%" class="table-hover table-dark table-bordered table-responsive">';
+            echo '<tr>';
+            echo '<th>Startdatum</th>';
+            echo '<th>Startuhrzeit</th>';
+            echo '<th>Kurzbeschreibung</th>';
+            echo '<th>Details anzeigen</th>';
+            $result=gethistoricEvents($conn,$sessionnid);
+            $amount=mysqli_num_rows($result);
+            $counter=1;
+            while($counter<=$amount)
+            {
+                echo '<tr>';
+                $row=mysqli_fetch_assoc($result);
+                echo '<td>'.$row["startdate"].'</td>';
+                echo '<td>'.$row["starttime"].'</td>';
+                echo '<td>'.$row["title"].'</td>';
+                echo '<td>.<a href="events.php?mode=displaydetails&eid='.$row["eid"].'"> <button class="btn btn-info">Details anzeigen</button></a>.</td>';
+                $counter=$counter+1;
+                echo '</tr>';
+            }
+            echo '</tr>';
+            echo '</table>';*/
+            
+            include 'include/eventfunctions.inc.php';
+            echo '<h1>Übersicht der Events</h1>';
+            echo '<br>';
+            echo '<h3>Aktuelle Events</h3>';
+            echo '<br>';
+            echo '<table  class="table table-hover table-dark table-bordered text-center">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>Startdatum</th>';
+            echo '<th>Startuhrzeit</th>';
+            echo '<th>Kurzbeschreibung</th>';
+            echo '<th>Details anzeigen</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+            $result=getEvents($conn,$sessionnid);
+            $amount=mysqli_num_rows($result);
+            $counter=1;
+            while($counter<=$amount)
+            {
+                echo '<tr>';
+                $row=mysqli_fetch_assoc($result);
+                echo '<td>'.$row["startdate"].'</td>';
+                echo '<td>'.$row["starttime"].'</td>';
+                echo '<td>'.$row["title"].'</td>';
+                echo '<td>.<a href="events.php?mode=displaydetails&eid='.$row["eid"].'"> <button class="btn btn-info">Details anzeigen</button></a>.</td>';
+                $counter=$counter+1;
+                echo '</tr>';
+            }
+            echo '</tbody>';
+            echo '</table>';
+            echo "<br>";
+            echo '<h3>abgelaufene Events</h3>';echo '<br>';
+            echo '<table class="table table-hover table-dark table-bordered text-center">';
             echo '<tr>';
             echo '<th>Startdatum</th>';
             echo '<th>Startuhrzeit</th>';
@@ -326,82 +383,99 @@ if(isset($_SESSION['nid']))
             {
                 $eventData=getEventDetails($conn,$eid);
                 echo '<div class="form-row">';
-                echo '<div class="form-group col-xl-3">';
-                echo '<label for="inputtitle" class="text-dark">Bezeichnung des Events</label>';
+                echo '<div class="form-group col-md-3">';
+                
+                //
+                echo '<label for="inputtitle" class="text-dark"><h5>Bezeichnung des Events</h5></label>';
                 echo '</div>';
-                echo '<div class="form-group col-xl-3">';
-                echo '<input type="text" name="inputtitle" class="form-control" id="inputtitle" value="'.$eventData["title"].'" readonly>';
+                echo '<div class="form-group col-md-3">';
+                echo '<label name="inputtitle" class="" id="inputtitle"><strong>'.$eventData["title"].'</strong></label>';
                 echo '</div>';
                 echo '</div>';
+                
+                //
+                
                 echo '<div class="form-row">';
-                echo '<div class="form-group col-xl-3">';
-                echo '<label for="inputtitle" class="text-dark">Verantwortliche Person</label>';
+                echo '<div class="form-group col-md-3">';
+                echo '<label for="inputtitle" class="text-dark"><h5>Verantwortliche Person</h5></label>';
                 echo '</div>';
-                echo '<div class="form-group col-xl-3">';
+                echo '<div class="form-group col-md-3">';
                 $creator=getCreatorData($conn,$eventData["creator"]);
-                echo '<input type="text" name="inputtitle" class="form-control" id="inputtitle" value="'.$creator["title"].' '.$creator["firstname"].' '.$creator["lastname"].'" readonly>';
+                echo '<label name="inputtitle" class="" id="inputtitle">'.$creator["firstname"].' '.$creator["lastname"].' ('.$creator["title"].')'.'</label>';
                 echo '</div>';
                 echo '</div>';
+                
+                //
+                
                 echo '<div class="form-row">';
-                echo '<div class="form-group col-xl-3">';
-                echo '<label for="inputstartdate" class="text-dark">Beginn des Events</label>';
+                echo '<div class="form-group col-md-3">';
+                echo '<label for="inputstartdate" class="text-dark"><h5>Beginn des Events</h5></label>';
                 echo '</div>';
-                echo '<div class="form-group col-xl-3">';
-                echo '<input type="date" name="inputstartdate" class="form-control" id="inputstartdate" value="'. $eventData["startdate"].'"readonly>';
-                echo '</div>';
-                echo '<div class="form-group col-xl-3">';
-                echo '<input type="time" name="inputstarttime" class="form-control" id="inputstarttimes" value="'.$eventData["starttime"].'"readonly>';
+                
+                echo '<div class="form-group col-md-3">';
+                echo '<label name="inputstartdate" class="" id="inputstartdate">'. $eventData["startdate"].' ('.$eventData["starttime"].')'.'</label>';
                 echo '</div>';
                 echo '</div>';
+
+                //
+                
                 echo '<div class="form-row">';
-                echo '<div class="form-group col-xl-3">';
-                echo '<label for="inputstartdate" class="text-dark">Ende des Events</label>';
+                echo '<div class="form-group col-md-3">';
+                echo '<label for="inputstartdate" class="text-dark"><h5>Ende des Events</h5></label>';
                 echo '</div>';
-                echo '<div class="form-group col-xl-3">';
-                echo '<input type="date" name="inputstartdate" class="form-control" id="inputstartdate" value="'. $eventData["enddate"].'"readonly>';
-                echo '</div>';
-                echo '<div class="form-group col-xl-3">';
-                echo '<input type="time" name="inputstarttime" class="form-control" id="inputstarttimes" value="'.$eventData["endtime"].'"readonly>';
+                echo '<div class="form-group col-md-3">';
+                echo '<label name="inputstarttime" class="" id="inputstarttimes">'. $eventData["enddate"].'  ('.$eventData["endtime"].')'.'</label>';
                 echo '</div>';
                 echo '</div>';
+                
+                //
+                
                 echo '<div class="form-row">';
-                echo '<div class="form-group col-xl-3">';
-                echo '<label for="inputstartdate" class="text-dark">Ort der Veranstaltung</label>';
+                echo '<div class="form-group col-md-3">';
+                echo '<label for="inputstartdate" class="text-dark"><h5>Ort der Veranstaltung</h5></label>';
                 echo '</div>';
-                echo '<div class="form-group col-xl-3">';
-                echo '<input type="text" name="inputstartdate" class="form-control" id="inputstartdate" value="'. $eventData["street"].'"readonly>';
-                echo '</div>';
-                echo '<div class="form-group col-xl-3">';
-                echo '<input type="text" name="inputstarttime" class="form-control" id="inputstarttimes" value="'.$eventData["city"].'"readonly>';
+                echo '<div class="form-group col-md-3">';
+                echo '<labelname="inputstartdate" class="" id="inputstartdate">'. $eventData["street"].' ('.$eventData["city"].')'.'</label>';
                 echo '</div>';
                 echo '</div>';
+                
+                //
+                
                 echo '<div class="form-row">';
-                echo '<div class="form-group col-xl-3">';
-                echo '<label for="inputstartdate" class="text-dark">Link zur Veranstaltung</label>';
+                echo '<div class="form-group col-md-3">';
+                echo '<label for="inputstartdate" class="text-dark"><h5>Link zur Veranstaltung</h5></label>';
                 echo '</div>';
-                echo '<div class="form-group col-xl-3">';
-                echo '<input type="text" name="inputstartdate" class="form-control" id="inputstartdate" value="'. $eventData["link"].'"readonly>';
+                echo '<div class="form-group col-md-3">';
+                echo '<label name="inputstartdate" class="" id="inputstartdate">'. $eventData["link"].'</label>';
                 echo '</div>';
                 echo '</div>';
+                
+                //
+                
                 echo '<div class="form-row">';
-                echo '<div class="form-group col-xl-3">';
-                echo '<label for="inputdescription" class="text-dark">Beschreibung des Events</label>';
+                echo '<div class="form-group col-md-3">';
+                echo '<label for="inputdescription" class="text-dark"><h5>Beschreibung des Events</h5></label>';
                 echo '</div>';
-                echo '<div class="form-group col-xl-1">';
-                echo '<textarea cols="90" rows="40" name="inputdescription" readonly>'.$eventData["description"].'</textarea>';
+                echo '<div class="form-group col-md-9">';
+                echo '<label class="lead"  name="inputdescription">'.$eventData["description"].'</label>';
+                /*
+                echo '<textarea cols="90" rows="40" name="inputdescription" readonly>'.$eventData["description"].'</textarea>';*/
                 echo '</div>';
                 echo '</div>';
                 $data=getinvitedGroups($conn,$eid);
                 $amount=mysqli_num_rows($data);
-                echo 'Eingeladene Gruppen';
-                echo '<table width="100%" height="45%" class="table-hover table-dark table-bordered table-responsive">';
-                echo '<thead>';
-                echo '<tr class="">';
-                echo '<th class="th">'.'Studienrichtung'.'</th>';
-                echo '<th class="th">'.'Abschlussjahr'.'</th>';
+                
+                //
+                
+                echo '<br>';
+                echo '<h4>Eingeladene Gruppen</h4>';
+                echo '<br>';
+                echo '<table class="table table-hover table-dark table-bordered text-center">';
+                echo '<tr>';
+                echo '<th>Studienrichtung</th>';
+                echo '<th>Abschlussjahr</th>';
                 echo '</tr>';
-                echo '</thead>';
-                echo '<tbody>';
+                echo '<tr>';
                 $i = 1;
                 while ($i<=$amount)
                 {
@@ -412,32 +486,54 @@ if(isset($_SESSION['nid']))
                     echo '</tr>';
                     $i = $i + 1;
                 }
-                echo '</tbody>';
+                echo '</tr>';
                 echo '</table>';
+                
+                //
+                
+                echo '<div class="form-row">';
+                echo '<div class="form-group col-md-6">';
                 $exists=statusexists($conn,$eid,$sessionnid);
                 if($exists==0)
                 {
-                    echo 'Möchten Sie an der Veranstaltung teilnehmen?';
                     echo '<br>';
-                    echo '<td><a href="include/events.inc.php?mode=displaydetailsnew&state=accept&eid='.$eid.'"><button>zusagen</button></a></td>';
+                    echo '<h5>Möchten Sie an der Veranstaltung teilnehmen?</h5>';
                     echo '<br>';
-                    echo '<td><a href="include/events.inc.php?mode=displaydetailsnew&state=decline&eid='.$eid.'"><button>absagen</button></a></td>';
+                    echo '<td><a href="include/events.inc.php?mode=displaydetailsnew&state=accept&eid='.$eid.'"><button type="button" class="btn btn-success btn-lg">zusagen</button></a></td>';
+                    echo '<td><a href="include/events.inc.php?mode=displaydetailsnew&state=decline&eid='.$eid.'"><button type="button" class="btn btn-danger btn-lg">absagen</button></a></td>';
                 }
                 else
                 {
                     $state=getcurrentstate($conn,$eid,$sessionnid);
                     if($state==0)
                     {
-                        echo 'Möchten Sie doch an der Veranstaltung teilnehmen?';
-                        echo '<td><a href="include/events.inc.php?mode=displaydetailschange&state=accept&eid='.$eid.'"><button>zusagen</button></a></td>';
+                        echo '<br>';
+                        echo '<h5>Möchten Sie doch an der Veranstaltung teilnehmen?</h5>';
+                        echo '<td><a href="include/events.inc.php?mode=displaydetailschange&state=accept&eid='.$eid.'"><buttontype="button" class="btn btn-success btn-lg">zusagen</button></a></td>';
                     }
                     else
                     {
-                        echo 'Möchten Sie nicht mehr an der Veranstaltung teilnehmen?';
-                        echo '<td><a href="include/events.inc.php?mode=displaydetailschange&state=decline&eid='.$eid.'"><button>absagen</button></a></td>';
+                        echo '<br>';
+                        echo '<h5>Möchten Sie nicht mehr an der Veranstaltung teilnehmen?</h5>';
+                        echo '<td><a href="include/events.inc.php?mode=displaydetailschange&state=decline&eid='.$eid.'"><buttontype="button" class="btn btn-danger btn-lg">absagen</button></a></td>';
                     }
                 }
+                echo '</div>';
+                
+                echo '<div class="form-group col-md-6">';
+                $acceptnumber=getacceptnumber($conn,$eid);
+                $declinenumber=getdeclinenumber($conn,$eid);
+                echo '<br>';
+                echo '<h5>Zusagen: '.$acceptnumber.'</h5>';
+                echo '<h5>Absagen: '.$declinenumber.'</h5>';
+                
+                echo '</div>';
+                echo '</div>';
             }
+            
+            //
+            
+            
             $iscreator=iscreator($conn,$eid,$sessionnid);
             if($iscreator==1)
             {
@@ -445,14 +541,15 @@ if(isset($_SESSION['nid']))
                 $amount=mysqli_num_rows($responses);
                 $counter=1;
                 echo '<br>';
-                echo 'Teilnehmer';
                 echo '<br>';
-                echo '<table width="100%" height="45%" class="table-hover table-dark table-bordered table-responsive">';
+                echo '<h4>Teilnehmer</h4>';
+                echo '<br>';
+                echo '<table  class="table table-hover table-dark table-bordered text-center">';
                 echo '<thead>';
                 echo '<tr>';
                 echo '<th class="th">Seminargruppe</th>';
                 echo '<th class="th">Abschlussjahr</th>';
-                echo '<th class="th">Akademischer Titel</th>';
+                //echo '<th class="th">Akademischer Titel</th>';
                 echo '<th class="th">Vorname</th>';
                 echo '<th class="th">Nachname</th>';
                 echo '<th class="th">Status</th>';
@@ -463,7 +560,7 @@ if(isset($_SESSION['nid']))
                     $row = mysqli_fetch_assoc($responses);
                     echo '<td>'.$row["course"].'</td>';
                     echo '<td>'.$row["gradyear"].'</td>';
-                    echo '<td>'.$row["title"].'</td>';
+                    //echo '<td>'.$row["title"].'</td>';
                     echo '<td>'.$row["firstname"].'</td>';
                     echo '<td>'.$row["lastname"].'</td>';
                     if($row["status"]==0)
@@ -479,11 +576,6 @@ if(isset($_SESSION['nid']))
                     $counter=$counter+1;
                 }
                 echo '</table>';
-                $acceptnumber=getacceptnumber($conn,$eid);
-                echo 'Zusagen: '.$acceptnumber;
-                echo '<br>';
-                $declinenumber=getdeclinenumber($conn,$eid);
-                echo 'Absagen: '.$declinenumber;
                 
             }
         }
@@ -491,12 +583,12 @@ if(isset($_SESSION['nid']))
         {
             if($status == 3)
             {
-                echo "Event ändern";
+                echo "<h4>Event ändern</h4>";
                 include 'include/eventfunctions.inc.php';
                 echo '<br>';
-                echo "Übersicht der Events";
+                echo "<h5>Übersicht der Events</h5>";
                 echo '<br>';
-                echo '<table width="100%" height="45%" class="table-hover table-dark table-bordered table-responsive">';
+                echo '<table  class="table table-hover table-dark table-bordered text-center">';
                 echo '<tr>';
                 echo '<th>Startdatum</th>';
                 echo '<th>Startuhrzeit</th>';
@@ -603,12 +695,13 @@ if(isset($_SESSION['nid']))
                     echo '<label for="inputdescription" class="text-dark">Beschreibung des Events</label>';
                     echo '</div>';
                     echo '<div class="form-group col-xl-1">';
-                    echo '<textarea name="inputdescription" cols="90" rows="40" ">'.$eventData["description"].'</textarea>';
+                    echo '<textarea name="inputdescription" cols="70" rows="10" ">'.$eventData["description"].'</textarea>';
                     echo '</div>';
                     echo '</div>';
                     echo '<br>';
-                    echo 'Bereits eingeladene Gruppen';
-                    echo '<table width="100%" height="45%" class="table-hover table-dark table-bordered table-responsive">';
+                    echo '<h4>Bereits eingeladene Gruppen</h4>';
+                    echo '<br>';
+                    echo '<table  class=" table table-hover table-dark table-bordered text-center">';
                     echo '<thead>';
                     echo '<tr class="">';
                     echo '<th class="th">'.'Studienrichtung'.'</th>';
@@ -634,7 +727,7 @@ if(isset($_SESSION['nid']))
                     echo 'Möchten Sie weitere Gruppen einladen?';
                     echo '<br>';
                     
-                    echo '<table width="100%" height="45%" class="table-hover table-dark table-bordered table-responsive">';
+                    echo '<table class="table table-hover table-dark table-bordered text-center">';
                     echo '<thead>';
                     echo '<tr class="">';
                     echo '<th class="th">'.'Personengruppe auswählen'.'</th>';
