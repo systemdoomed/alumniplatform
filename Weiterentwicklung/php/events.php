@@ -260,58 +260,8 @@ if(isset($_SESSION['nid']))
         }
         elseif($mode == "displaylist")
         {
-            /*include 'include/eventfunctions.inc.php';
-            echo '<h1>Übersicht der Events</h1>';
-            echo '<br>';
-            echo '<h3>Aktuelle Events</h3>';
-            echo '<br>';
-            echo '<table width="100%" height="45%" class="table-hover table-dark table-bordered table-responsive">';
-            echo '<tr>';
-            echo '<th>Startdatum</th>';
-            echo '<th>Startuhrzeit</th>';
-            echo '<th>Kurzbeschreibung</th>';
-            echo '<th>Details anzeigen</th>';
-            $result=getEvents($conn,$sessionnid);
-            $amount=mysqli_num_rows($result);
-            $counter=1;
-            while($counter<=$amount)
-            {
-                echo '<tr>';
-                $row=mysqli_fetch_assoc($result);
-                echo '<td>'.$row["startdate"].'</td>';
-                echo '<td>'.$row["starttime"].'</td>';
-                echo '<td>'.$row["title"].'</td>';
-                echo '<td>.<a href="events.php?mode=displaydetails&eid='.$row["eid"].'"> <button class="btn btn-info">Details anzeigen</button></a>.</td>';
-                $counter=$counter+1;
-                echo '</tr>';
-            }
-            echo '</tr>';
-            echo '</table>';
-            echo "<br>";
-            echo '<h3>abgelaufene Events</h3>';echo '<br>';
-            echo '<table width="100%" height="45%" class="table-hover table-dark table-bordered table-responsive">';
-            echo '<tr>';
-            echo '<th>Startdatum</th>';
-            echo '<th>Startuhrzeit</th>';
-            echo '<th>Kurzbeschreibung</th>';
-            echo '<th>Details anzeigen</th>';
-            $result=gethistoricEvents($conn,$sessionnid);
-            $amount=mysqli_num_rows($result);
-            $counter=1;
-            while($counter<=$amount)
-            {
-                echo '<tr>';
-                $row=mysqli_fetch_assoc($result);
-                echo '<td>'.$row["startdate"].'</td>';
-                echo '<td>'.$row["starttime"].'</td>';
-                echo '<td>'.$row["title"].'</td>';
-                echo '<td>.<a href="events.php?mode=displaydetails&eid='.$row["eid"].'"> <button class="btn btn-info">Details anzeigen</button></a>.</td>';
-                $counter=$counter+1;
-                echo '</tr>';
-            }
-            echo '</tr>';
-            echo '</table>';*/
-            
+            if(($state==2)||($state==3))
+                {
             include 'include/eventfunctions.inc.php';
             echo '<h1>Übersicht der Events</h1>';
             echo '<br>';
@@ -367,6 +317,11 @@ if(isset($_SESSION['nid']))
             }
             echo '</tr>';
             echo '</table>';
+                    }
+            else
+                {
+                    echo 'Keine Zugriffsberechtigung';
+                }
         }
         elseif($mode == "displaydetails")
         {
@@ -481,8 +436,8 @@ if(isset($_SESSION['nid']))
                 {
                     echo '<tr>';
                     $row = mysqli_fetch_assoc($data);
-                    echo '<td>'.$row["course"].'<td>';
-                    echo '<td>'.$row["gradyear"].'<td>';
+                    echo '<td>'.$row["course"].'</td>';
+                    echo '<td>'.$row["gradyear"].'</td>';
                     echo '</tr>';
                     $i = $i + 1;
                 }
@@ -716,8 +671,8 @@ if(isset($_SESSION['nid']))
                     {
                         echo '<tr>';
                         $row = mysqli_fetch_assoc($result);
-                        echo '<td>'.$row["course"].'<td>';
-                        echo '<td>'.$row["gradyear"].'<td>';
+                        echo '<td>'.$row["course"].'</td>';
+                        echo '<td>'.$row["gradyear"].'</td>';
                         echo '</tr>';
                         $i = $i + 1;
                     }
@@ -744,8 +699,8 @@ if(isset($_SESSION['nid']))
                         echo '<tr>';
                         $row = mysqli_fetch_assoc($groups);
                         echo '<td><input type="checkbox" name="group'.$i.'" value="'.$row["course"].';'.$row["gradyear"].'" id="check1"></td>';
-                        echo '<td>'.$row["course"].'<td>';
-                        echo '<td>'.$row["gradyear"].'<td>';
+                        echo '<td>'.$row["course"].'</td>';
+                        echo '<td>'.$row["gradyear"].'</td>';
                         echo '</tr>';
                         $i = $i + 1;
                     }
