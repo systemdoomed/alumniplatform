@@ -29,18 +29,12 @@ include_once 'header.php'
 			      <p class="card-text">Sieh dir die Profile und Kontakdaten von Alumni deiner ehemaligen Seminargruppe an.</p>
 			    </div>
 			  </div>
-			  <div class="card bg-light">
+
+			  <div class="card">
 			    <div class="card-body text-center">
-			    	<h4 class="card-title text-muted text-black-50">Erinnern</h4>
-			      <p class="card-text text-muted text-black-50">Lade Bilder in eine gemeinsame Bildergallerie hoch und blicke Zurück in die Zeit des Studiums.</p>
-			      <h5 class="card-text text-info">Bald verfügbar!</h5>
-			    </div>
-			  </div>
-			  <div class="card bg-light">
-			    <div class="card-body text-center">
-			    	<h4 class="card-title text-muted">Interagieren</h4>
-			      <p class="card-text text-muted">Erstelle Umfragen und Events für ehemalige Mitglieder deiner Seminargruppe.</p>
-			      <h5 class="card-text text-info">Bald verfügbar!</h5>
+			    	<h4 class="card-title ">Interagieren</h4>
+			      <p class="card-text">Erstelle Umfragen und Events für ehemalige Mitglieder deiner Seminargruppe.</p>
+			      
 			    </div>
 			  </div>
 			</div>
@@ -60,3 +54,5 @@ include_once 'footer.php'
 <img src="img/stock_people.jpg" class="rounded" alt="Studenten">
 */
 ?>
+
+
