@@ -38,11 +38,11 @@ if(isset($_SESSION['nid']))
         echo '</div>';
         echo '<div class="form-group col-md-3">';
         echo '<tr>';
-        echo '<td><a href="include/searchlog.inc.php"> <button class="btn btn-primary"> Suchen </button></a></td>';
+        echo '<td><a href="include/searchlog.inc.php"> <br><button class="btn btn-primary"> Suchen </button></a></td>';
         echo '</div>';
         echo '</form>';
         echo '<div class="form-group col-md-3">';
-        echo '<td><a href="logs.php"> <button class="btn btn-secondary"> Suche zurücksetzen </button></a></td>';
+        echo '<td><a href="logs.php"> <br><button class="btn btn-secondary"> Suche zurücksetzen </button></a></td>';
         echo '</div>';
         echo '</tr>';
         echo '</table>';
@@ -82,7 +82,7 @@ if(isset($_SESSION['nid']))
             if ($result = mysqli_stmt_get_result($stmt))
             {
                 $count = mysqli_num_rows($result);
-                echo '<table width="100%" height="45%" class="table-hover table-dark table-bordered table-responsive"  >';
+                echo '<br> <table class="table table-hover table-dark table-bordered text-center"  >';
                 echo '<thead>';
                 echo '<tr class="">';
                 echo '<th class="th">'.'Datum'.'</th>';
